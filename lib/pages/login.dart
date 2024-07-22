@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Email atau Password salah'),
+          content: Text('Email atau Password salah!'),
         ),
       );
     }
