@@ -49,24 +49,34 @@ class _StockPageState extends State<SellerStockPage> with SingleTickerProviderSt
       ),
       body: Column(
         children: [
-        Expanded(
-        child: Consumer<Branch>(
-          builder: (context, branch, child) =>ListView(
-            children: _getAllProduct(branch.products).map((product) {
-                return ListTile(
-                leading: Image.asset("lib/assets/images/${product.category}.jpg", width: 100, height: 100, fit: BoxFit.cover),             
-                title: product.volume != null ? Text("${product.name} ${product.volume}ml") : Text(product.name),
-                subtitle: const Text(" "),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Stok: ${product.stock}", style: const TextStyle(fontSize: 14)),
-                  ],
-                ),
-                );
-            }).toList(),
-          ),
-        ),
+        FutureBuilder(
+          future: Provider.of<Branch>(context, listen: false).fetchProducts(),
+          builder: (context,snapshot) {
+            return Expanded(
+            child: Consumer<Branch>(
+              builder: (context, branch, child) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else {
+                return ListView(
+                children: _getAllProduct(branch.products).map((product) {
+                    return ListTile(
+                    leading: Image.asset("lib/assets/images/${product.category}.jpg", width: 100, height: 100, fit: BoxFit.cover),             
+                    title: product.volume != null ? Text("${product.name} ${product.volume}ml") : Text(product.name),
+                    subtitle: const Text(" "),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("Stok: ${product.stock}", style: const TextStyle(fontSize: 14)),
+                      ],
+                    ),
+                    );
+                }).toList(),
+              );
+            }
+          }),
+            );
+          }
         ),
         ],
       ),

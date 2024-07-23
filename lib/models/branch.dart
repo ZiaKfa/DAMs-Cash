@@ -13,6 +13,7 @@ Future<http.Response> fetchProducts() async {
       final response = await http.get(Uri.parse('https://script.googleusercontent.com/macros/echo?user_content_key=X7VFpS47XCH_kBZawHKaO0cPec9cngl7RLm2deTgTTrcBlYmbSxYkvjhI8fV95GgxxIxhaWfUgkZJEB2FbHFNlb6kSSUDMVhm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHlL9jT2vO1udgJdvY-WjqtFB_JW5I3YsYexRJOOaX1cGAgwXIpXk96RSVJxk6c6GrNmhwNE_17PIG3Ma_s_Ussnw5zFWm3PXA&lib=MPgjlcXF8kb0MaUhhcpulVOFv7QlOchAA'));
 
       if (response.statusCode == 200) {
+        _fullProducts.clear();
         // If the server returns a 200 OK response, then parse the JSON.
         final List<dynamic> products = jsonDecode(response.body);
         for (var product in products) {
@@ -70,6 +71,11 @@ Future<http.Response> fetchProductByUserId(int userId) async {
 
   void addProduct(Product product) {
     _products.add(product);
+    notifyListeners();
+  }
+
+  void addFullProduct(Product product) {
+    _fullProducts.add(product);
     notifyListeners();
   }
 

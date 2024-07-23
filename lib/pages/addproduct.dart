@@ -78,35 +78,83 @@ class _AddproductState extends State<AddProduct> {
               const SizedBox(height: 18),
               DropdownButtonFormField<String>(
                 value: "default",
-                decoration: const InputDecoration(labelText: 'Kategori'),
+                decoration: const InputDecoration(labelText: 'Gambar'),
                 items: const [
                   DropdownMenuItem(
                     value: 'default',
-                    child: Text('Pilih Kategori'),
+                    child: Text('Pilih Gambar'),
                   ),
                   DropdownMenuItem(
-                    value: 'salad',
-                    child: Text('Salad'),
+                    value: 'salad-buah',
+                    child: Text('Salad Buah'),
                   ),
                   DropdownMenuItem(
-                    value: 'buko',
-                    child: Text('Buko'),
+                    value: 'buko-pandan',
+                    child: Text('Buko Pandan'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'buko-strawberry',
+                    child: Text('Buko Strawberry'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'buko-taro',
+                    child: Text('Buko Taro'),
                   ),
                   DropdownMenuItem(
                     value: 'rujak',
                     child: Text('Rujak'),
                   ),
                   DropdownMenuItem(
-                    value: 'drink',
-                    child: Text('Es'),
+                    value: 'capcin',
+                    child: Text('Cappucino Cincau'),
                   ),
                   DropdownMenuItem(
-                    value: 'jelly',
-                    child: Text('Minuman Jelly'),
+                    value: 'cendol',
+                    child: Text('Cendol'),
                   ),
                   DropdownMenuItem(
-                    value: 'pudding',
-                    child: Text('Pudding'),
+                    value: 'chocho-drink',
+                    child: Text('Drink Coklat'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'straw-drink',
+                    child: Text('Drink Strawberry'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'mango-drink',
+                    child: Text('Drink Mangga'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'taro-drink',
+                    child: Text('Drink Taro'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'kopyor',
+                    child: Text('Es Kopyor'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'kuwut',
+                    child: Text('Es Kuwut'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'mango-milk',
+                    child: Text('Mango Milk Cheese'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'puding-mango',
+                    child: Text('Drink Coklat'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'puding-strawberry',
+                    child: Text('Puding Strawberry'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'puding-coklat',
+                    child: Text('Puding Coklat'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'kepona',
+                    child: Text('Es Kepona'),
                   ),
                 ],
                 onChanged: (value) {
@@ -116,7 +164,7 @@ class _AddproductState extends State<AddProduct> {
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Kategori tidak boleh kosong';
+                    return 'Gambar tidak boleh kosong';
                   }
                   return null;
                 },
@@ -138,6 +186,7 @@ class _AddproductState extends State<AddProduct> {
                       userId: auth.currentUser.id,
                     );
                     branch.addProduct(product);
+                    branch.addFullProduct(product);
                     branch.postProduct(product);
                     showDialog(
                       context: context,

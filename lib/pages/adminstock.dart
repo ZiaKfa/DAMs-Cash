@@ -66,6 +66,7 @@ class _AdminStockPageState extends State<AdminStockPage> with SingleTickerProvid
                             onPressed: () {
                               final branch = Provider.of<Branch>(context, listen: false);
                               branch.fetchProductByUserId(user.id);
+                              branch.fetchProducts();
                               Navigator.push(context, MaterialPageRoute(builder:(context) => const SellerStockPage()));
                             },
                             child: const Text('Lihat Stok'),

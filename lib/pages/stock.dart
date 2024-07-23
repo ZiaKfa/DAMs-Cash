@@ -66,7 +66,7 @@ class _StockPageState extends State<StockPage> with SingleTickerProviderStateMix
             return ListView(
             children: _getAllProduct(branch.products).map((product) {
                 return ListTile(
-                leading: Image.asset("lib/assets/images/${product.category}.jpg", width: 100, height: 100, fit: BoxFit.cover),             
+                leading: Image.asset("lib/assets/images/${product.category}.jpg", width: 80, height: 100, fit: BoxFit.cover),             
                 title: product.volume != null ? Text("${product.name} ${product.volume}ml") : Text(product.name),
                 subtitle: const Text(" "),
                 trailing: Row(

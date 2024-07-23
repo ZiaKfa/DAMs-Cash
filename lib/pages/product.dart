@@ -73,7 +73,7 @@ class _ProductPageState extends State<ProductPage> with SingleTickerProviderStat
                 return ListView(
                   children: _getAllProduct(branch.products).map((product) {
                   return ListTile(
-                    leading: Image.asset("lib/assets/images/${product.category}.jpg", width: 100, height: 100, fit: BoxFit.cover),             
+                    leading: Image.asset("lib/assets/images/${product.category}.jpg", width: 80, height: 100, fit: BoxFit.cover),             
                     title: product.volume != null ? Text("${product.name} ${product.volume}ml") : Text(product.name),
                     subtitle: Text("Rp.${product.price}\nStok: ${product.stock}"),
                     trailing: ElevatedButton(
