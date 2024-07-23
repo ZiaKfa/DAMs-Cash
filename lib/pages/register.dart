@@ -82,8 +82,45 @@ class _RegisterState extends State<Register> {
                 password: passwordController.text,
                 isAdmin: false,
               );
-              auth.register(registeredUser);
-              auth.postUser(registeredUser);
+              if (nameController.text.isEmpty || emailController.text.isEmpty || passwordController.text.isEmpty) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('Error'),
+                      content: const Text('Please fill in all fields'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              } else {
+                auth.register(registeredUser);
+                auth.postUser(registeredUser);
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('Registrasi Berhasil'),
+                      content: const Text('Registrasi berhasil, silahkan login'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginOrRegister()));
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
               showDialog(
                 context: context,
                 builder: (context) {
